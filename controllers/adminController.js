@@ -19,6 +19,8 @@ module.exports = {
         title: "LivEverywhere | Category",
       });
     } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", "danger");
       res.render("admin/category/view_category");
     }
   },
@@ -68,10 +70,12 @@ module.exports = {
 
   viewBank: async (req, res) => {
     try {
+      const bank = await Bank.find();
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus };
       res.render("admin/bank/view_bank", {
+        bank,
         title: "LivEverywhere | Bank",
         alert,
       });
@@ -88,7 +92,7 @@ module.exports = {
         name,
         bankName,
         accountNumber,
-        imageUrl: `images${req.file.filename}`,
+        imageUrl: `images/${req.file.filename}`,
       });
       req.flash("alertMessage", "Success Add Bank");
       req.flash("alertStatus", "success");
