@@ -16,6 +16,8 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Master Item</h1>
         <!-- End of Heading -->
+        <% if(action ==='view'){ %>
+
         <!-- Tabs navs -->
         <div>
           <!-- Nav tabs -->
@@ -34,18 +36,36 @@
                 >Add Item</a
               >
             </li>
-           
           </ul>
           <!-- Tab panes -->
           <div class="tab-content">
-            <%- include('table.ejs') %>
-            <%- include('add_item.ejs') %>
+            <%- include('table.ejs') %> <%- include('add_item.ejs') %>
           </div>
           <!-- DataTales Example -->
         </div>
-        <!-- /.container-fluid -->
+        <%} else if (action === 'show image') { %>
+        <!-- Tabs navs -->
+        <div>
+          <!-- Nav tabs -->
+          <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="#show-image"
+                role="tab"
+                data-toggle="tab"
+                >Show Image</a
+              >
+            </li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content"><%- include('show_image_item.ejs') %></div>
+          <!-- DataTales Example -->
+
+          <%}%>
+          <!-- /.container-fluid -->
+        </div>
       </div>
-    </div>
       <!-- End of Main Content -->
 
       <%- include('../../partials/footer.ejs') %>
